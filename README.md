@@ -1,0 +1,2 @@
+# ddb-desktop
+DroneDB Desktop
