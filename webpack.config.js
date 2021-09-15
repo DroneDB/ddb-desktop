@@ -74,6 +74,10 @@ module.exports = {
         })
     ],
 
+    node: {
+        fs: 'empty'
+    },
+
     resolve:{
         alias: {
             commonui: path.resolve(__dirname, 'vendor/CommonUI/'),
