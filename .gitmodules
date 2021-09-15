@@ -1,0 +1,8 @@
+[submodule "vendor/CommonUI"]
+	path = vendor/CommonUI
+	url = https://github.com/DroneDB/CommonUI
+	branch = master
+[submodule "vendor/ddb"]
+	path = vendor/ddb
+	url = https://github.com/DroneDB/DroneDB
+	branch = master

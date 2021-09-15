@@ -1,0 +1,38 @@
+{
+  "name": "ddb-desktop",
+  "version": "1.0.5",
+  "description": "Effortless aerial data management and sharing",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "app.dronedb.ddbdesktop",
+    "asar": false,
+    "directories":{
+      "buildResources": "assets"
+    },
+    "files": ["**/*", "build/**", "!innosetup.iss", "!.cache/**", "!build.bat", "!signtool.reg", "!node_modules/ddb"]
+  },
+  "repository": "https://github.com/DroneDB/Desktop",
+  "keywords": [],
+  "author": "DroneDB Authors",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "electron-builder": "^22.11.7",
+    "electron": "^8.1.1"
+  },
+  "dependencies": {
+    "clipboard-copy": "^3.1.0",
+    "commonui": "file:./vendor/commonUI",
+    "copy-webpack-plugin": "^6.4.0",
+    "ddb": "file:./vendor/ddb"
+  },
+  "cmake-js": {
+    "runtime": "electron",
+    "runtimeVersion": "8.1.1",
+    "arch": "x64"
+  }
+}

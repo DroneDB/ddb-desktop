@@ -1,0 +1,30 @@
+html{
+    overflow: hidden;
+}
+body{
+    color: #030A03;
+    background: #fefefe;
+    overflow: hidden;
+}
+
+.hide{
+    display: none !important;
+}
+
+.spin {
+    animation: rotation 2s infinite linear;
+}
+
+.circle.notch{
+    height: 17px;
+    width: 22px;
+}
+ 
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
