@@ -33,6 +33,7 @@ SignTool=signtool
 PrivilegesRequired=lowest
 UsePreviousAppDir=no
 ;SetupIconFile=setup.ico
+ChangesEnvironment=yes
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -54,6 +55,9 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Run]
 Filename: "{tmp}\VC_redist.x64.exe"; Parameters: "/q /norestart /q:a /c:""VCREDI~3.EXE /q:a /c:""""msiexec /i vcredist.msi /qn"""" """; Check: VCRedistNeedsInstall; WorkingDir: {tmp}; StatusMsg: Installing VC++ 2019 Redistributables...
 Filename: {app}\ddb-desktop.exe; Description: {cm:LaunchProgram,DroneDB Desktop}; Flags: nowait postinstall skipifsilent
+
+[Registry]
+Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "Path"; ValueData: "{olddata};{app}\resources\app\vendor\ddb\build"; Check: NeedsAddPath('resources\app\vendor\ddb\build')
 
 [Code]
 #IFDEF UNICODE
@@ -78,4 +82,22 @@ end;
 function VCRedistNeedsInstall: Boolean;
 begin
   Result := not (VCVersionInstalled('{33628a12-6787-4b9f-95a1-92449f69fae0}'));
+end;
+
+function NeedsAddPath(Param: string): boolean;
+var
+  OrigPath: string;
+  AppParam: string;
+begin
+  AppParam := ExpandConstant('{app}') + '\' + Param;
+  if not RegQueryStringValue(HKEY_CURRENT_USER,
+    'Environment',
+    'Path', OrigPath)
+  then begin
+    Result := True;
+    exit;
+  end;
+  { look for the path with leading and trailing semicolon }
+  { Pos() returns 0 if not found }
+  Result := Pos(';' + AppParam + ';', ';' + OrigPath + ';') = 0;
 end;
