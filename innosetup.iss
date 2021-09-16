@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "DroneDB Desktop"
-#define MyAppVersion "1.0"
+#define MyAppVersion "1.0.5"
 #define MyAppPublisher "DroneDB"
 #define MyAppURL "https://dronedb.app"
 
@@ -39,11 +39,14 @@ ChangesEnvironment=yes
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-
 Source: "assets\VC_redist.x64.exe"; DestDir: {tmp}; Flags: deleteafterinstall
-Source: "dist\win-unpacked\*"; Excludes: "resources\app\vendor\ddb\build\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "dist\win-unpacked\*"; Excludes: "resources\app\node_modules,resources\app\vendor\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "node_modules\vue\dist\vue.js"; DestDir: "{app}\resources\app\node_modules\vue\dist\"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "dist\win-unpacked\resources\app\vendor\ddb\build\*"; DestDir: "{app}\resources\app\vendor\ddb\build"; Flags: ignoreversion
+Source: "node_modules\ddb\node_modules\*"; DestDir: "{app}\resources\app\node_modules\ddb\node_modules"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "vendor\ddb\build\*"; DestDir: "{app}\resources\app\build"; Flags: ignoreversion
+Source: "vendor\ddb\nodejs\*"; DestDir: "{app}\resources\app\vendor\ddb\nodejs"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "vendor\ddb\index.js"; DestDir: "{app}\resources\app\vendor\ddb"; Flags: ignoreversion
+Source: "vendor\CommonUI\dynamic\*"; DestDir: "{app}\resources\app\vendor\CommonUI\dynamic"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: {group}\DroneDB Desktop; Filename: "{app}\ddb-desktop.exe"; WorkingDir: "{app}"; IconFilename: "{app}\ddb-desktop.exe"; IconIndex: 0
@@ -57,7 +60,7 @@ Filename: "{tmp}\VC_redist.x64.exe"; Parameters: "/q /norestart /q:a /c:""VCREDI
 Filename: {app}\ddb-desktop.exe; Description: {cm:LaunchProgram,DroneDB Desktop}; Flags: nowait postinstall skipifsilent
 
 [Registry]
-Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "Path"; ValueData: "{olddata};{app}\resources\app\vendor\ddb\build"; Check: NeedsAddPath('resources\app\vendor\ddb\build')
+Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "Path"; ValueData: "{olddata};{app}\resources\app\build"; Check: NeedsAddPath('resources\app\build')
 
 [Code]
 #IFDEF UNICODE

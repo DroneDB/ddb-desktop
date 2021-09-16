@@ -1,6 +1,6 @@
 // Set PROJ_LIB
 const path = require('path');
-process.env.PROJ_LIB = path.join(__dirname, 'vendor/ddb/build');
+process.env.PROJ_LIB = path.join(__dirname, 'build');
 
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron');
