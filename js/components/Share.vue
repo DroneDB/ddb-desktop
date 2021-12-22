@@ -21,7 +21,7 @@
                         <div class="cui select icon">
                             <i class="server icon"></i>
                             <select v-model="registry" title="Server to share to">
-                                <option value="testhub.dronedb.app">hub.dronedb.app</option>
+                                <option value="hub.dronedb.app">hub.dronedb.app</option>
                             </select>
                         </div>
                     </div>
