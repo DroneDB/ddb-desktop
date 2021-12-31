@@ -1,5 +1,7 @@
 // Set PROJ_LIB
 const path = require('path');
+// Uncomment during debug
+//process.env.PROJ_LIB = path.join(__dirname, 'vendor', 'ddb', 'build');
 process.env.PROJ_LIB = path.join(__dirname, 'build');
 
 // Modules to control application life and create native browser window

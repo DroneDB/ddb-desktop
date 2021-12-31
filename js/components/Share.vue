@@ -114,7 +114,7 @@ export default {
       return {
         //   defaultRegistry,
           error: "",
-          registry: defaultRegistry,
+          registry: "hub.dronedb.app",
           registerUrl: "https://dronedb.app/register",
           tag: "",
           password: "",

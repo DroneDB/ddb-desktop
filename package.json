@@ -1,6 +1,6 @@
 {
   "name": "ddb-desktop",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Effortless aerial data management and sharing",
   "main": "main.js",
   "scripts": {
